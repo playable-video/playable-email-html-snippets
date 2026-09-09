@@ -9,6 +9,7 @@ A library of HTML email templates that embed Playable Video. Keep one file per b
 | `aeromexico.html` | AeroMexico | Legacy (muted autoplay, `playable-reveal` blur-in) | 650x278, 16:9-ish | Two CTAs, dark navy background, Roboto/Space Grotesk |
 | `thatconceptstore.html` | THAT Concept Store | Legacy (muted autoplay, `playable-reveal` blur-in) | 600x336, 16:9 | Single outlined CTA on black, demo Playable asset |
 | `blizzardinternal.html` | Playable (Blizzard internal) | Legacy (muted autoplay) | 600x336, 16:9 | Stripo-style export with rollover images and hover states |
+| `frame.html` | FRAME | Legacy (muted autoplay, `playable-reveal` blur-in) | 675x842, portrait | Kendall Jenner for FRAME campaign, Savoy serif headline, 675px-wide layout with multiple image/CTA rows |
 | `kennardssound.html` | Kennards Hire | v1.4 + Apple Mail baseline-gap fix, sound-enabled (`native.m3u8` / `native.mp4` with controls) | 600x1066, portrait | Four-step editorial layout, red/black brand, prototype landing page fallback |
 | `jpmorgansound.html` | J.P. Morgan Private Bank | v2.0 responsive stage, sound-enabled (`native.m3u8` / `native.mp4` with controls) | 600x336, 16:9 | Marketo template (`{{my.*}}`, `{{lead.*}}` tokens), "Outlook? click here for sound" link, dark-mode classes |
 
