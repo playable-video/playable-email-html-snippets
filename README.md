@@ -12,6 +12,7 @@ A library of HTML email templates that embed Playable Video. Keep one file per b
 | `frame.html` | FRAME | Legacy (muted autoplay, `playable-reveal` blur-in) | 675x842, portrait | Kendall Jenner for FRAME campaign, Savoy serif headline, 675px-wide layout with multiple image/CTA rows |
 | `kennardssound.html` | Kennards Hire | v1.4 + Apple Mail baseline-gap fix, sound-enabled (`native.m3u8` / `native.mp4` with controls) | 600x1066, portrait | Four-step editorial layout, red/black brand, prototype landing page fallback |
 | `jpmorgansound.html` | J.P. Morgan Private Bank | v2.0 responsive stage, sound-enabled (`native.m3u8` / `native.mp4` with controls) | 600x336, 16:9 | Marketo template (`{{my.*}}`, `{{lead.*}}` tokens), "Outlook? click here for sound" link, dark-mode classes |
+| `framesound.html` | FRAME | v2.0 responsive stage, sound-enabled (`native.m3u8` / `native.mp4` with controls) | 675x842, portrait | `frame.html` with its legacy snippet swapped for the `jpmorgansound.html` v2.0 snippet, FRAME assets throughout; `FRAME:` comments mark each change. Sound links use FRAME's click-through until a FRAME sound page exists |
 
 ## Conventions
 
