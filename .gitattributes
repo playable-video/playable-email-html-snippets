@@ -1,0 +1,2 @@
+# Store text files with LF line endings; Git converts to your platform's endings on checkout.
+* text=auto
