@@ -1,0 +1,6 @@
+{
+    // Formatters reflow Playable snippets and split ESP tokens such as {{my.mobileAlignment}}.
+    "[html]": {
+        "editor.formatOnSave": false
+    }
+}

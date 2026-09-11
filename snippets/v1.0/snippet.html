@@ -1,0 +1,37 @@
+<!-- Playable Video snippet 1.0 (legacy control). Copy everything below this line into the email, then replace every __PLACEHOLDER__ (see README.md > Placeholders). -->
+<!-- Playable Video, Patent No. 2,613,821 -->
+<!-- Version 1.0 -->
+<style>
+    @media (-webkit-video-playable-inline) {
+        *[playable] video { display: block !important; }
+        *[playable] video~img { display: none !important; }
+    }
+
+    @keyframes playable-reveal {
+        0% { opacity: 0; filter: blur(64px); }
+        50% { filter: blur(0px); }
+        100% { opacity: 1; }
+    }
+</style>
+<!--[if mso 15]><style>*[playable] video { height: auto !important; }</style><![endif]-->
+<!--[if mso]><table align="center" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" valign="top" width="__WIDTH__"><![endif]-->
+<div playable="Y2FyZWVyQHBsYXlhYmxlLnZpZGVv"
+    style="background-image:url(__BASE_URL__/lowsrc.jpg);background-size:contain;background-repeat:no-repeat;background-position:center center;margin:0 auto;animation:playable-reveal 1s;max-width:__WIDTH__px;overflow:hidden;">
+    <div
+        style="background-image:url(__BASE_URL__/loading);background-size:auto 20%;background-repeat:no-repeat;background-position:center center;position:relative;height:0;max-height:0;padding-bottom:__RATIO__%;">
+        <a href="__BASE_URL__/click/__CLICK_URL__"><video
+                style="max-width:__WIDTH__px;width:100%;height:__HEIGHT_PLUS_100__px;object-fit:contain;object-position:50% 50px;position:absolute;top:-50px;display:none;margin:0 auto;"
+                poster="__BASE_URL__/lowsrc.jpg" loop muted autoplay playsinline>
+                <source media="(-webkit-video-playable-inline) and (-webkit-min-device-pixel-ratio: 3)" src="__BASE_URL__/video@3x.mp4" type="video/mp4">
+                <source media="(-webkit-video-playable-inline) and (-webkit-min-device-pixel-ratio: 2)" src="__BASE_URL__/video@2x.mp4" type="video/mp4">
+                <source media="(-webkit-video-playable-inline)" src="__BASE_URL__/video.webm" type="video/webm">
+                <source media="(-webkit-video-playable-inline)" src="__BASE_URL__/video.mp4" type="video/mp4">
+            </video><img width="__WIDTH__" height="__HEIGHT__"
+                style="max-width:__WIDTH__px;width:100%;height:auto;position:absolute;display:block;margin:0 auto;"
+                src="__BASE_URL__/video@2x"
+                srcset="__BASE_URL__/video@3x __WIDTH_3X__w, __BASE_URL__/video@2x __WIDTH_2X__w, __BASE_URL__/video __WIDTH__w, __BASE_URL__/lowsrc.jpg 99w"
+                sizes="(-webkit-video-playable-inline) 1vw, 100vw" alt="__ALT__" /></a>
+    </div>
+</div>
+<!--[if mso]></td></tr></table><![endif]-->
+<!-- end Playable Video -->

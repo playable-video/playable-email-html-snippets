@@ -1,0 +1,71 @@
+<!-- Playable Video snippet 1.4 (control). Copy everything below this line into the email, then replace every __PLACEHOLDER__ (see README.md > Placeholders). The <style> block is reconstructed, see CHANGELOG.md. -->
+<!-- Playable Video, Patent No. 2,613,821 -->
+<!-- Version 1.4 + Apple Mail baseline-gap fix -->
+<style>
+    @media (-webkit-video-playable-inline) {
+        *[playable] video { display: block !important; }
+        *[playable] .-playable-video { display: none !important; }
+    }
+</style>
+<div playable="Y2FyZWVyQHBsYXlhYmxlLnZpZGVv" class="-playable-" style="width:__WIDTH__px;height:__HEIGHT__px;margin:0 auto;font-size:0;line-height:0;">
+
+    <!--[if mso]>
+    <div style="width:__WIDTH__px;height:__HEIGHT__px;display:inline-block;">
+        <img width="__WIDTH__" height="__HEIGHT__" src="__BASE_URL__/lowsrc.jpg" alt="__ALT__" style="display:block;border:0;" />
+    </div>
+    <![endif]-->
+
+    <!--[if !mso]><!-->
+    <div style="max-height:0;overflow:visible;">
+        <div class="-playable-" style="width:__WIDTH__px;height:__HEIGHT__px;display:inline-block;">
+            <a href="__BASE_URL__/click/__CLICK_URL__" style="display:block;width:__WIDTH__px;height:__HEIGHT__px;">
+                <video class="-playable-" width="__WIDTH__" height="__HEIGHT__" autoplay loop muted playsinline
+                    poster="__BASE_URL__/lowsrc.jpg"
+                    style="object-fit:cover;display:none;vertical-align:top;">
+                    <source media="(-webkit-video-playable-inline) and (-webkit-min-device-pixel-ratio: 2)"
+                        src="__BASE_URL__/video@2x.mp4" type="video/mp4">
+                    <source media="(-webkit-video-playable-inline)"
+                        src="__BASE_URL__/video.mp4" type="video/mp4">
+                </video>
+            </a>
+        </div>
+    </div>
+
+    <div class="-playable-video" style="max-height:0;overflow:visible;">
+        <div class="-playable-" style="width:__WIDTH__px;height:__HEIGHT__px;display:inline-block;">
+            <a href="__BASE_URL__/click/__CLICK_URL__" style="display:block;width:__WIDTH__px;height:__HEIGHT__px;">
+                <img class="-playable-" width="__WIDTH__" height="__HEIGHT__"
+                    src="__BASE_URL__/video@2x"
+                    srcset="__BASE_URL__/video@3x __WIDTH_3X__w, __BASE_URL__/video@2x __WIDTH_2X__w, __BASE_URL__/video __WIDTH__w, __BASE_URL__/lowsrc.jpg 99w"
+                    sizes="(-webkit-video-playable-inline) 1vw,100vw"
+                    alt="__ALT__"
+                    style="display:block;border:0;" />
+            </a>
+        </div>
+    </div>
+    <!--<![endif]-->
+
+    <!--[if (!mso)&(!IE)]><!-->
+    <div class="-playable- -pl-vws-" style="width:__WIDTH__px;height:__HEIGHT__px;display:block;mso-hide:all;">
+        <video width="__WIDTH__" height="__HEIGHT__" preload="none" loop controls disablePictureInPicture
+            controlsList="nodownload" class="-playable-" style="object-fit:cover;vertical-align:top;"
+            poster="data:image/svg+xml,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox%3D'0 0 __WIDTH__ __HEIGHT__'%2F%3E">
+            <source src="__BASE_URL__/native.m3u8" type="application/x-mpegURL">
+            <source src="__BASE_URL__/native.mp4" type="video/mp4">
+            <!-- Last-resort fallback: image shown at its natural ratio, centred in the slot -->
+            <table role="presentation" width="__WIDTH__" cellpadding="0" cellspacing="0" border="0" style="width:__WIDTH__px;">
+                <tr>
+                    <td align="center" valign="middle" height="__HEIGHT__" style="height:__HEIGHT__px;background-color:#000000;">
+                        <a href="__SOUND_PAGE_URL__" style="display:inline-block;">
+                            <img class="-playable-" width="__WIDTH__" src="__SOUND_FALLBACK_IMG__" alt="__ALT__"
+                                style="display:block;border:0;width:__WIDTH__px;height:auto;" />
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </video>
+    </div>
+    <!--<![endif]-->
+
+</div>
+<!-- end Playable Video -->
