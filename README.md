@@ -2,16 +2,17 @@
 
 The Playable Video email snippet in every version we've used, plus every customer email we've built with it.
 
-- **Starting a new email?** Copy the current control snippet from [`snippets/v2.0/`](snippets/v2.0/).
+- **Starting a new email?** Copy the current control snippet from [`snippets/v2.1/`](snippets/v2.1/).
 - **Need a past build?** Finished customer emails live in [`templates/`](templates/) as the record of what shipped.
 
 ## What's in here
 
 ```
 snippets/                  control snippets, one folder per version
-  v2.0/                    current
+  v2.1/                    current
     snippet.html           copy-from snippet with __PLACEHOLDERS__
     control-email.html     minimal test email using Playable's demo video
+  v2.0/                    superseded by 2.1
   v1.4/                    earlier sound version
   v1.0/                    legacy, muted only
 templates/                 finished customer emails, one folder per brand
@@ -24,7 +25,7 @@ CHANGELOG.md               what changed between snippet versions
 
 ## Build a new customer email
 
-1. **Pick a version.** Use the current one, [`snippets/v2.0/`](snippets/v2.0/), unless the customer needs an older one.
+1. **Pick a version.** Use the current one, [`snippets/v2.1/`](snippets/v2.1/), unless the customer needs an older one.
 2. **Copy the snippet.** Paste the contents of `snippet.html` into the customer's email where the video goes, leaving out its first line (the usage comment).
 3. **Fill in the placeholders** from the [table below](#placeholders). Use find-and-replace so every copy of each one changes.
 4. **Run the check:** `bash scripts/check-templates.sh path/to/email.html`
@@ -41,11 +42,11 @@ Moving an existing customer email to a newer snippet? Make a new file next to th
 | `__CLICK_URL__` | Where a click on the video lands | `https://frame-store.com/pages/kendall-jenner-for-frame` |
 | `__WIDTH__` / `__HEIGHT__` | Video size in px | `675` / `842` |
 | `__WIDTH_2X__` / `__WIDTH_3X__` | Width × 2 and × 3, for `srcset` | `1350` / `2025` |
-| `__RATIO__` | Height ÷ width × 100, up to 2 decimals (1.0 and 2.0) | `124.74` |
+| `__RATIO__` | Height ÷ width × 100, up to 2 decimals (1.0, 2.0 and 2.1) | `124.74` |
 | `__HEIGHT_PLUS_100__` | Height + 100 (1.0 only) | `942` |
 | `__ALT__` | Alt text for the video images | `Kendall Jenner for FRAME` |
-| `__SOUND_PAGE_URL__` | Page that plays the video with sound, for mail apps that can't (1.4 and 2.0) | a `cdn1.playable.video/prototypes/…` page |
-| `__SOUND_FALLBACK_IMG__` | Image shown in place of the sound video when a mail app can't play it (1.4 and 2.0). `__BASE_URL__/video@2x` works if there's nothing custom | `…/video@2x` |
+| `__SOUND_PAGE_URL__` | Page that plays the video with sound, for mail apps that can't (1.4 and later) | a `cdn1.playable.video/prototypes/…` page |
+| `__SOUND_FALLBACK_IMG__` | Image shown in place of the sound video when a mail app can't play it (1.4 and later). `__BASE_URL__/video@2x` works if there's nothing custom | `…/video@2x` |
 
 Leave `playable="Y2FyZWVyQHBsYXlhYmxlLnZpZGVv"` as it is. Every snippet uses the same value.
 
@@ -71,22 +72,26 @@ Demo videos use `demo.playable.video/xid_demo:<id>` instead of a customer host a
 
 | Version | Status | What it does | Used by |
 |---|---|---|---|
-| [2.0](snippets/v2.0/) | Current | Sound, plus a responsive stage that keeps the video's shape on phones and an "Outlook? click here for sound" line | jpmorgan, frame (sound) |
+| [2.1](snippets/v2.1/) | Current | 2.0 with Outlook fixes: Outlook on iPhone and iPad shows the animated image, linked to the sound page, and only Outlook for Windows shows the sound line, now "Click here to watch with sound" | none yet |
+| [2.0](snippets/v2.0/) | Superseded | Sound, plus a responsive stage that keeps the video's shape on phones and an "Outlook? click here for sound" line. Blank in Outlook on iPhone and iPad (fixed in 2.1) | jpmorgan, frame (sound) |
 | [1.4](snippets/v1.4/) | Superseded | Sound, fixed pixel size | kennards |
 | [1.0](snippets/v1.0/) | Legacy | Muted autoplay with a blur-in, no sound | aeromexico, blizzard, frame, thatconceptstore |
 
 Details for each version are in [CHANGELOG.md](CHANGELOG.md).
 
-What each kind of mail app shows with 2.0:
+What each kind of mail app shows with 2.1:
 
 | Mail app | Shows |
 |---|---|
 | Plays video inline (Apple Mail, iOS Mail) | Muted autoplay video, with a native video on top that plays sound when tapped |
 | Supports HTML5 video but not inline autoplay | Animated image under a play control; playing it starts the video with sound |
-| No video support | Animated image (or `__SOUND_FALLBACK_IMG__`, depending on how the app handles `<video>`) |
+| No video support | Animated image (or `__SOUND_FALLBACK_IMG__`, depending on how the app handles `<video>`), linked to the sound page |
+| Outlook on iPhone and iPad | Animated image; tapping it opens the sound page. The app passes the inline-video test but won't play video, so 2.1 hides the sound layer there |
 | Outlook for Windows | Still image (`lowsrc.jpg`) linked to the click URL |
 
-Everywhere except Apple Mail and iOS Mail, the "Outlook? click here for sound" line shows under the video.
+Only Outlook for Windows shows the "Click here to watch with sound" line under the video: it sits in `<!--[if mso]>`. Everywhere else, tapping the video plays it with sound or opens the sound page. In 2.0 the line read "Outlook? click here for sound" and showed everywhere except Apple Mail and iOS Mail.
+
+**2.0 known issue, fixed in 2.1:** Outlook on iPhone and iPad passes 2.0's inline-video test but won't play the video, and nothing shows there. The cause is 2.0 dropping the `[playable]` prefix from the `.-playable-video` hide rule (to reach the sound line); Playable's platform snippet keeps it. 2.1 puts the prefix back and adds the platform's `.-pl-vws-\0` rule, so that app shows the animated image. [jpmorgansummerreadingsound.html](templates/jpmorgan/jpmorgansummerreadingsound.html) carries the same fix on 2.0 (see its `JPM:` notes); `framesound.html` and `jpmorgansound.html` still have the bug.
 
 The control emails use Playable's demo video, which has no sound files (`native.*`) or loading spinner. Their sound layer won't play until they point at a demo video with sound.
 
