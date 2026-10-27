@@ -6,7 +6,7 @@ These notes were reconstructed in September 2026 by comparing the templates, so 
 
 ## 2.0 (current)
 
-Control: [`snippets/v2.0/`](snippets/v2.0/). Used by `templates/jpmorgan/jpmorgansound.html` and `templates/frame/framesound.html`.
+Control: [`snippets/v2.0/`](snippets/v2.0/). Used by `templates/jpmorgan/jpmorgansound.html`, `templates/jpmorgan/jpmorgansummerreadingsound.html` and `templates/frame/framesound.html`.
 
 - **Responsive stage.** Below the video's width the stage switches to `width: 100%` with a percentage `padding-bottom` (height ÷ width), so the video keeps its shape when a mail app zooms the message to fit a phone. The snippet's own notes say an earlier approach used viewport units, which squashed the video in that situation.
 - `aspect-ratio` on the video and fallback image, for clients that lay out `<video>` before its metadata loads.

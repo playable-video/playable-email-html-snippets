@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Playable Now Available | J.P. Morgan Private Bank</title>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #000000; overflow: hidden; }
+  body { display: flex; align-items: center; justify-content: center; }
+  /* as wide as the screen, but never taller than it, so the controls sit on the picture */
+  video { display: block; width: 100%; max-width: calc(100vh * 1920 / 1074); max-width: calc(100dvh * 1920 / 1074);
+          aspect-ratio: 1920 / 1074; height: auto; background: #000000; }
+</style>
+</head>
+<body>
+<!-- Sound page for the J.P. Morgan summer reading list email: the video alone, with sound.
+     Browsers block autoplay with sound, so it starts on the first tap of the play control. -->
+<video controls autoplay loop playsinline preload="auto"
+  poster="https://demo.playable.video/xid_demo:6755360955695950.uid_sound-page/lowsrc.jpg">
+  <source src="https://demo.playable.video/xid_demo:6755360955695950.uid_sound-page/native.m3u8" type="application/x-mpegURL" />
+  <source src="https://demo.playable.video/xid_demo:6755360955695950.uid_sound-page/native.mp4" type="video/mp4" />
+  <a href="https://demo.playable.video/xid_demo:6755360955695950.uid_sound-page/native.mp4">Watch the video</a>
+</video>
+</body>
+</html>

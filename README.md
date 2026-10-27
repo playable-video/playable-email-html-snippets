@@ -16,6 +16,7 @@ snippets/                  control snippets, one folder per version
   v1.0/                    legacy, muted only
 templates/                 finished customer emails, one folder per brand
   aeromexico/  blizzard/  frame/  jpmorgan/  kennards/  thatconceptstore/
+  jpmorgan/cdn/            web pages hosted on cdn1.playable.video/prototypes/ (not emails)
 scripts/
   check-templates.sh       catches unfilled placeholders and leftover assets
 CHANGELOG.md               what changed between snippet versions
@@ -62,6 +63,7 @@ Every asset hangs off the base URL (`__BASE_URL__/<asset>`):
 | `native.m3u8`, `native.mp4` | Video with sound (1.4 and later) |
 | `loading` | Loading spinner (1.0) |
 | `click/<destination>` | Tracked click that redirects to `<destination>` |
+| `click` | Runs the click action set on the video in Playable, such as a page that plays it with sound. A click action also overrides `click/<destination>`. Never end a link in `click/` with nothing after the slash: it returns a 401 and a blank page |
 
 Demo videos use `demo.playable.video/xid_demo:<id>` instead of a customer host and `xid_v:`.
 
@@ -97,6 +99,8 @@ The control emails use Playable's demo video, which has no sound files (`native.
 | FRAME | [frame.html](templates/frame/frame.html) | 1.0 | 675x842 | Kendall Jenner for FRAME, 675px-wide layout with image and CTA rows |
 | FRAME | [framesound.html](templates/frame/framesound.html) | 2.0 | 675x842 | `frame.html` rebuilt on 2.0 with FRAME's assets; `FRAME:` comments mark each change. Sound links use FRAME's click-through until a FRAME sound page exists |
 | J.P. Morgan Private Bank | [jpmorgansound.html](templates/jpmorgan/jpmorgansound.html) | 2.0 | 600x336 | Marketo template (`{{my.*}}`, `{{lead.*}}` tokens) with dark-mode classes. A code formatter split some `{{my.mobileAlignment}}` tokens in the `<head>` CSS, so those won't fill in |
+| J.P. Morgan Private Bank | [jpmorgansummerreadingsound.html](templates/jpmorgan/jpmorgansummerreadingsound.html) | 2.0 | 512x287 | J.P. Morgan's Marketo test email (TMT template, summer reading list) on demo video `xid_demo:6755360955695958`, sized to the template's 512px column. Built on 2.0 with the Outlook fixes that became [2.1](CHANGELOG.md). Every link opens the video's click page (`click`, no trailing slash), and the sound line reads "On Outlook? Click here to watch with sound" in every app, both as the client asked. The snippet's CSS is also copied into `<head>`, because Marketo's rich-text editor stripped the `<style>` from this email's earlier 1.0 snippet. `JPM:` comments mark each change; strip them before sending |
+| J.P. Morgan Private Bank | [cdn/jpmc-summer-reading-list-email.html](templates/jpmorgan/cdn/jpmc-summer-reading-list-email.html) | none | full screen | No longer linked from `jpmorgansummerreadingsound.html`, whose links now open the video's click action. It was the email's sound page, live at `https://cdn1.playable.video/prototypes/jpmc-summer-reading-list-email.html`: just the video with sound (`native.m3u8` / `native.mp4`, recipient ID `sound-page`), as large as the screen allows. Browsers block autoplay with sound, so it usually starts on the first tap of play. The check script skips `cdn/` folders, since these are web pages, not emails |
 | Kennards Hire | [kennardssound.html](templates/kennards/kennardssound.html) | 1.4 | 600x1066 | Four-step editorial layout. **Missing the snippet's `<style>` block**, so its autoplay video never switches on (the check script flags this) |
 | THAT Concept Store | [thatconceptstore.html](templates/thatconceptstore/thatconceptstore.html) | 1.0 | 600x336 | Playable demo video. Clicks go straight to YouTube rather than through Playable tracking |
 
