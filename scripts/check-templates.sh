@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Sanity-checks Playable email templates before they're committed or sent.
 #
-#   bash scripts/check-templates.sh                     # every .html under templates/ and snippets/
+#   bash scripts/check-templates.sh                     # every .html under templates/ and snippets/,
+#                                                       # except web pages in cdn/ folders (not emails)
 #   bash scripts/check-templates.sh path/to/email.html  # just the files you name
 #
 # Errors (exit code 1):
@@ -19,7 +20,7 @@ if [ "$#" -gt 0 ]; then
     files=("$@")
 else
     cd "$(dirname "$0")/.." || exit 2
-    while IFS= read -r f; do files+=("$f"); done < <(find templates snippets -name '*.html' 2>/dev/null | sort)
+    while IFS= read -r f; do files+=("$f"); done < <(find templates snippets -name '*.html' -not -path '*/cdn/*' 2>/dev/null | sort)
 fi
 if [ "${#files[@]}" -eq 0 ]; then
     echo "No .html files found under templates/ or snippets/."
