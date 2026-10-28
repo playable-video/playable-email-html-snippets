@@ -2,11 +2,24 @@
 
 Every version of the Playable Video email snippet that appears in this repo, newest first.
 
-These notes were reconstructed in September 2026 by comparing the templates, so they describe what the code does rather than an official release history. Versions 1.1 to 1.3 never made it into the repo. Versions follow MAJOR.MINOR; see [Versioning](README.md#versioning) for when to bump which.
+The notes for 2.0 and earlier were reconstructed in September 2026 by comparing the templates, so they describe what the code does rather than an official release history. Versions 1.1 to 1.3 never made it into the repo. Versions follow MAJOR.MINOR; see [Versioning](README.md#versioning) for when to bump which.
 
-## 2.0 (current)
+## 2.1 (current)
 
-Control: [`snippets/v2.0/`](snippets/v2.0/). Used by `templates/jpmorgan/jpmorgansound.html` and `templates/frame/framesound.html`.
+Control: [`snippets/v2.1/`](snippets/v2.1/). Not used by any template yet. The changes below come from October 2026 Braze test sends of `templates/jpmorgan/jpmorgansummerreadingsound.html`, a 2.0 build that carries them (see its `JPM:` comments), checked in Apple Mail, Gmail and Outlook. That email later moved its links and sound line to the client's choices (see the README's templates table); 2.1 keeps the defaults below.
+
+Fixes 2.0 showing nothing in Outlook on iPhone and iPad. That app passes the inline-video test (`@media (-webkit-video-playable-inline)`) but won't play video, and it drops the `playable` attribute or attribute selectors. So 2.0's unprefixed hide rule hid the animated image there, while the video stayed hidden too.
+
+- The fallback hide rule is `*[playable] .-playable-video` again, the form Playable's own platform snippet uses. Apps that drop the attribute or attribute selectors now skip both rules in the inline-video block and keep the animated image. The prefix has no quoted value: a quoted attribute selector stopped working after a Braze send, so keep CSS selectors free of quotes.
+- Playable's platform rule for Outlook, `<style>.-pl-vws-\0{ display: none !important; }</style>`, follows the snippet's style block in its own element, exactly as the platform ships it. `-pl-vws-` is the sound layer's class.
+- The sound layer is hidden by a plain `.-pl-vws-` rule in the inline-video block and brought back by `*[playable] .-pl-vws-`. Outlook on iPhone and iPad applies only the plain rule, so the sound layer, a video it won't play, no longer sits on top of the animated image and swallows the tap. Apple Mail applies both and keeps tap-to-play inline. The platform's `\0` rule alone didn't hide the layer there.
+- The sound line reads "Click here to watch with sound" (2.0: "Outlook? click here for sound"). It sits in `<!--[if mso]>` and no longer has the `-playable-video` class, so only Outlook for Windows shows it; every other app gives sound from the video itself or the sound page. Hiding this line was 2.0's only reason to drop the prefix.
+- No HTML in CSS comments: the `aspect-ratio` comment says "a video" instead of `<video>`. Email on Acid reports that Outlook.com can blank an email over HTML inside a `<style>` block.
+- The animated image links to `__SOUND_PAGE_URL__` instead of `__BASE_URL__/click/__CLICK_URL__`, so tapping it in Outlook on iPhone and iPad, or in an app without video, opens the sound page. Those taps no longer go through Playable's tracked click. The autoplay video and the Outlook for Windows image still link to `__BASE_URL__/click/__CLICK_URL__`.
+
+## 2.0 (responsive stage)
+
+Control: [`snippets/v2.0/`](snippets/v2.0/). Used by `templates/jpmorgan/jpmorgansound.html`, `templates/jpmorgan/jpmorgansummerreadingsound.html` and `templates/frame/framesound.html`.
 
 - **Responsive stage.** Below the video's width the stage switches to `width: 100%` with a percentage `padding-bottom` (height ÷ width), so the video keeps its shape when a mail app zooms the message to fit a phone. The snippet's own notes say an earlier approach used viewport units, which squashed the video in that situation.
 - `aspect-ratio` on the video and fallback image, for clients that lay out `<video>` before its metadata loads.
