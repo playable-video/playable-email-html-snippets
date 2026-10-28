@@ -255,6 +255,79 @@ u + .body .Show-Mobile-Logo {
  100% { opacity: 1; }
 }
 </style> 
+<style data-provider="playable.video">
+    /* JPM: copy of the style block inside the Playable snippet in the body.
+       Marketo's rich-text editor can strip style blocks from the body (it did
+       with this template's previous snippet); this copy keeps the video working
+       if that happens. Keep the two copies in sync. */
+    /* ------------------------------------------------------------------
+       Playable Video - responsive stage
+       The stage reserves the space for the video. Its height comes from
+       percentage padding (287 / 512 = 56.05%), which is always
+       resolved against the stage's own container width. Viewport units (vw)
+       are resolved against the device screen instead - that mismatch is what
+       squashed the video whenever a client zoomed the message to fit the phone.
+       ------------------------------------------------------------------ */
+    @media only screen and (max-device-width: 512px),
+    only screen and (max-width: 512px) {
+
+        .-pl-stage- {
+            display: block !important;
+            width: 100% !important;
+            max-width: 512px !important;
+            height: 0 !important;
+            padding-bottom: 56.05% !important;
+            margin: 0 auto !important;
+        }
+
+        .-pl-stage- div,
+        .-pl-stage- a,
+        .-pl-stage- video,
+        .-pl-stage- img {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        /* for clients that lay out a video before its metadata arrives */
+        .-pl-stage- video,
+        .-pl-stage- img {
+            aspect-ratio: 512 / 287;
+        }
+    }
+
+    @media (-webkit-video-playable-inline) {
+        *[playable] video {
+            display: block !important;
+        }
+
+        /* JPM: playable-attribute prefix kept, as in the Playable platform snippet, so apps that drop
+           the attribute or attribute selectors (Outlook on iPhone/iPad) keep the animated image */
+        *[playable] .-playable-video {
+            display: none !important;
+        }
+
+        /* JPM: the sound layer shows only where playable-attribute rules apply (Apple Mail). Outlook on
+           iPhone/iPad applies plain rules but not attribute ones, so there the layer, a video it
+           will not play, is hidden and a tap reaches the animated image link */
+        .-pl-vws- {
+            display: none !important;
+        }
+
+        *[playable] .-pl-vws- {
+            display: block !important;
+        }
+    }
+</style>
+<style>.-pl-vws-\0{ display: none !important; }</style> 
+<style>
+/* JPM: Apple Mail shows the 2.0 sound layout and hides the regular snippet. Attribute rules, so
+   Outlook on iPhone/iPad (which skips them) keeps the regular snippet */
+@media (-webkit-video-playable-inline) {
+div[data-pl-apple] { display: block !important; }
+div[data-pl-regular] { display: none !important; }
+}
+</style> 
 <!--Playable Video CSS Ends--> 
 <!--Outlook MSO Styles Starts--> 
 <!--[if mso]>
@@ -606,9 +679,142 @@ border-collapse: collapse;margin:0 auto;">
 <!-- JPM BRAZE: Braze copy of jpmorgansummerreadingapplesound.html. Video URLs use Braze's user_id tag, the footer uses Braze's email_address tag and a Liquid year; the template's other Marketo tokens have no Braze equivalent and render blank -->
 <!-- JPM: replaces the template's 1.0 snippet, whose style block was missing, so that video could never play -->
 <!-- JPM: Outlook table cell width 512 and image size 512x287 fit the template's 512px column (snippet default: cell 660, image width 100% and height 372; Outlook needs a fixed image width) -->
-<!-- JPM: the second video, after the animated image, plays with sound when tapped. It is the demo copy xid_demo:6755360955695970 (same footage; the J.P. Morgan video has no sound files) and is display:none inline, so only apps where the snippet's *[playable] video rule applies (Apple Mail) show it. It sits in a normal-flow layer raised with z-index, like the tap-to-play layer in Playable's sound snippet, because absolutely positioned it did not respond to taps in Apple Mail. MP4 only: the demo copy's HLS playlist is empty -->
+<!-- JPM: two blocks, one shown at a time. Apple Mail shows the first: the 2.0 layout that played inline in the tap test, on J.P. Morgan video xid_v:6755360955695961 with sound from the demo copy xid_demo:6755360955695970 (same footage; J.P. Morgan's video has no sound files; MP4 only, as that copy's HLS playlist is empty). Every other app shows the second: Playable's regular snippet, muted, nothing clickable -->
+<!-- JPM: the Apple block is display:none and mso-hide:all inline; div[data-pl-apple] and div[data-pl-regular] rules in @media (-webkit-video-playable-inline) swap them. Outlook on iPhone/iPad skips attribute rules, so it keeps the regular snippet -->
 <!-- JPM: every other app gets the snippet's usual muted video or animated image, with no links and no sound line, as J.P. Morgan asked -->
-<!-- Playable Video, Patent No. 2,613,821 --><style>
+<style>
+/* JPM: Apple Mail shows the 2.0 sound layout and hides the regular snippet. Attribute rules, so
+   Outlook on iPhone/iPad (which skips them) keeps the regular snippet */
+@media (-webkit-video-playable-inline) {
+div[data-pl-apple] { display: block !important; }
+div[data-pl-regular] { display: none !important; }
+}
+</style>
+<div data-pl-apple style="display:none;mso-hide:all;">
+<div align="center" style="padding:0;font-size:0;line-height:0;text-align:center">
+    <!-- Playable Video, Patent No. 2,613,821 -->
+    <!-- Version 2.0 -->
+    <style data-provider="playable.video">
+        /* ------------------------------------------------------------------
+           Playable Video - responsive stage
+           The stage reserves the space for the video. Its height comes from
+           percentage padding (287 / 512 = 56.05%), which is always
+           resolved against the stage's own container width. Viewport units (vw)
+           are resolved against the device screen instead - that mismatch is what
+           squashed the video whenever a client zoomed the message to fit the phone.
+           ------------------------------------------------------------------ */
+        @media only screen and (max-device-width: 512px),
+        only screen and (max-width: 512px) {
+
+            .-pl-stage- {
+                display: block !important;
+                width: 100% !important;
+                max-width: 512px !important;
+                height: 0 !important;
+                padding-bottom: 56.05% !important;
+                margin: 0 auto !important;
+            }
+
+            .-pl-stage- div,
+            .-pl-stage- a,
+            .-pl-stage- video,
+            .-pl-stage- img {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+            }
+
+            /* for clients that lay out a video before its metadata arrives */
+            .-pl-stage- video,
+            .-pl-stage- img {
+                aspect-ratio: 512 / 287;
+            }
+        }
+
+        @media (-webkit-video-playable-inline) {
+            *[playable] video {
+                display: block !important;
+            }
+
+            /* JPM: playable-attribute prefix kept, as in the Playable platform snippet, so apps that drop
+               the attribute or attribute selectors (Outlook on iPhone/iPad) keep the animated image */
+            *[playable] .-playable-video {
+                display: none !important;
+            }
+
+            /* JPM: the sound layer shows only where playable-attribute rules apply (Apple Mail). Outlook on
+               iPhone/iPad applies plain rules but not attribute ones, so there the layer, a video it
+               will not play, is hidden and a tap reaches the animated image link */
+            .-pl-vws- {
+                display: none !important;
+            }
+
+            *[playable] .-pl-vws- {
+                display: block !important;
+            }
+        }
+    </style>
+    <style>.-pl-vws-\0{ display: none !important; }</style>
+
+    <div playable="Y2FyZWVyQHBsYXlhYmxlLnZpZGVv" class="-playable- -pl-stage-"
+        style="width: 512px; height: 287px; margin: 0 auto; font-size: 0; line-height: 0">
+
+        <!--[if !mso]><!-->
+        <div style="max-height: 0; overflow: visible">
+            <div class="-playable-" style="width: 512px; height: 287px; display: inline-block">
+                <a href="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/click"
+                    style="display:block;width:100%;max-width:512px;height:auto;">
+                    <video class="-playable-" width="512" height="287" autoplay loop muted playsinline
+                        poster="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/lowsrc.jpg"
+                        style="object-fit: cover; display: none; vertical-align: top">
+                        <source media="(-webkit-video-playable-inline) and (-webkit-min-device-pixel-ratio: 2)"
+                            src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@2x.mp4" type="video/mp4" />
+                        <source media="(-webkit-video-playable-inline)"
+                            src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video.mp4" type="video/mp4" />
+                    </video>
+                </a>
+            </div>
+        </div>
+
+        <div class="-playable-video" style="max-height: 0; overflow: visible">
+            <div class="-playable-" style="width: 512px; height: 287px; display: inline-block">
+                <a href="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/click"
+                    style="display:block;width:100%;max-width:512px;height:auto;">
+                    <img class="-playable-" width="512" height="287"
+                        src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@2x"
+                        srcset="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@3x 1536w, https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@2x 1024w, https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video 512w, https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/lowsrc.jpg 99w"
+                        sizes="(-webkit-video-playable-inline) 1vw, 100vw"
+                        alt="Playable Video"
+                        style="display: block; border: 0" />
+                </a>
+            </div>
+        </div>
+        <!--<![endif]-->
+
+        <!--[if (!mso)&(!IE)]><!-->
+        <div style="max-height: 0; overflow: visible">
+            <div class="-playable- -pl-vws-" style="width: 512px; height: 287px; display: block; mso-hide: all">
+                <video width="512" height="287" preload="none" loop controls disablePictureInPicture
+                    controlsList="nodownload" class="-playable-"
+                    style="object-fit: cover; vertical-align: top; width:100%;max-width:512px;"
+                    poster="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'512'%20height%3D'287'%20viewBox%3D'0%200%20512%20287'%2F%3E">
+                    <source src="https://demo.playable.video/xid_demo:6755360955695970.uid_{{${user_id}}}/native.mp4" type="video/mp4" />
+                    <a href="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/click"
+                        style="display:block;width:100%;max-width:512px;height:auto;">
+                        <img class="-playable-" width="512" height="287"
+                            src="https://cdn.playable.video/demo.playable.video/demo:6755360955695970/1.png"
+                            alt="Playable Video"
+                            style="display: block; border: 0; width:100%; height:auto; max-width:512px; object-fit: cover;" />
+                    </a>
+                </video>
+            </div>
+        </div>
+        <!--<![endif]-->
+    </div>
+    <!-- end Playable Video -->
+</div>
+</div>
+<div data-pl-regular><!-- Playable Video, Patent No. 2,613,821 --><style>
 @media (-webkit-video-playable-inline) {
 *[playable] video { display: block !important; }
 *[playable] video ~ img { display: none !important; }
@@ -619,8 +825,8 @@ border-collapse: collapse;margin:0 auto;">
  100% { opacity: 1; }
 }
 </style><!--[if mso 15]><style>*[playable] video { height: auto !important; }</style><![endif]--><!--[if mso]><table align="center" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" valign="top" width="512"><![endif]--><div playable="Y2FyZWVyQHBsYXlhYmxlLnZpZGVv" style="background-image:url(https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/lowsrc.jpg);background-size:contain;background-repeat:no-repeat;background-position:center center;margin:0 auto;animation:playable-reveal 1s;max-width:660px;overflow:hidden;"><div style="background-image:url(https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/loading);background-size:auto 20%;background-repeat:no-repeat;background-position:center center;position:relative;height:0;max-height:0;padding-bottom:56%;"><video style="max-width:660px;width:100%;height:472px;object-fit:contain;object-position:50% 50px;position:absolute;top:-50px;display:none;margin:0 auto;" poster="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/lowsrc.jpg" loop muted 
-autoplay playsinline><source media="(-webkit-video-playable-inline) and (-webkit-min-device-pixel-ratio: 3)" src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@3x.mp4" type="video/mp4"></source><source media="(-webkit-video-playable-inline) and (-webkit-min-device-pixel-ratio: 2)" src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@2x.mp4" type="video/mp4"></source><source media="(-webkit-video-playable-inline)" src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video.webm" type="video/webm"></source><source media="(-webkit-video-playable-inline)" src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video.mp4" type="video/mp4"></source></video><img width="512" height="287" style="max-width:660px !important;width:100% !important;height:auto;position:absolute;display:block;margin:0 auto;" src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@2x" srcset="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@3x 1980w, https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@2x 1320w, https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video 660w, https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/lowsrc.jpg 99w" sizes="(-webkit-video-playable-inline) 1vw, 100vw" alt="Playable Video" /><!--[if !mso]><!--><div style="position:relative;z-index:1;max-height:0;overflow:visible;"><video width="512" height="287" preload="none" loop controls playsinline disablePictureInPicture controlsList="nodownload" style="display:none;width:100%;height:auto;aspect-ratio:512 / 287;object-fit:cover;vertical-align:top;" poster="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'512'%20height%3D'287'%20viewBox%3D'0%200%20512%20287'%2F%3E"><source src="https://demo.playable.video/xid_demo:6755360955695970.uid_{{${user_id}}}/native.mp4" type="video/mp4" /></video></div><!--<![endif]--></div></div><!--[if mso]></td></tr></table><![endif]-->
-<!-- end Playable Video --> 
+autoplay playsinline><source media="(-webkit-video-playable-inline) and (-webkit-min-device-pixel-ratio: 3)" src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@3x.mp4" type="video/mp4"></source><source media="(-webkit-video-playable-inline) and (-webkit-min-device-pixel-ratio: 2)" src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@2x.mp4" type="video/mp4"></source><source media="(-webkit-video-playable-inline)" src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video.webm" type="video/webm"></source><source media="(-webkit-video-playable-inline)" src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video.mp4" type="video/mp4"></source></video><img width="512" height="287" style="max-width:660px !important;width:100% !important;height:auto;position:absolute;display:block;margin:0 auto;" src="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@2x" srcset="https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@3x 1980w, https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video@2x 1320w, https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/video 660w, https://jpmorgan.playable.video/xid_v:6755360955695961.uid_{{${user_id}}}/lowsrc.jpg 99w" sizes="(-webkit-video-playable-inline) 1vw, 100vw" alt="Playable Video" /></div></div><!--[if mso]></td></tr></table><![endif]-->
+<!-- end Playable Video --></div> 
 <div> 
 <br /> 
 </div> 
