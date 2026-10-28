@@ -45,7 +45,7 @@ Control: [`snippets/v1.4/`](snippets/v1.4/). Used by `templates/kennards/kennard
 
 ## 1.0 (legacy, muted only)
 
-Control: [`snippets/v1.0/`](snippets/v1.0/). Used by `aeromexico`, `thatconceptstore`, `blizzard` and `frame` (the templates carry no version marker).
+Control: [`snippets/v1.0/`](snippets/v1.0/). Used by `aeromexico`, `thatconceptstore`, `blizzard`, `frame` and `jpmorgan/jpmorgansummerreadingapplesound.html` (the templates carry no version marker). It's still the snippet Playable's platform generates for videos without sound.
 
 The original snippet: muted autoplay, no sound.
 
